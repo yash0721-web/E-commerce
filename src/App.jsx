@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
@@ -11,7 +16,25 @@ import LoginPage from "./components/LoginPage";
 import ProductDetails from "./components/ProductDetails";
 import Categories from "./components/Categories";
 import CategoryPage from "./components/CategoryPage";
+import Checkout from "./components/Checkout";
+import AdminDashboard from "./components/AdminDashboard";
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+
+// Protected Route component
+const ProtectedRoute = ({ children, requireAdmin = false }) => {
+  const { isAuthenticated, isAdmin } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  if (requireAdmin && !isAdmin) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
+};
 
 const appStyles = {
   app: {
@@ -28,30 +51,44 @@ const appStyles = {
   },
 };
 
-function App() {
+const App = () => {
   return (
-    <CartProvider>
-      <Router>
-        <div style={appStyles.app}>
-          <Header />
-          <main style={appStyles.mainContent}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/categories" element={<Categories />} />
-              <Route path="/category/:categoryId" element={<CategoryPage />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <div style={appStyles.app}>
+            <Header />
+            <main style={appStyles.mainContent}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route
+                  path="/category/:categoryId"
+                  element={<CategoryPage />}
+                />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
