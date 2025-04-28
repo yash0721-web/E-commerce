@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import LoginPage from "./components/LoginPage";
 import ProductDetails from "./components/ProductDetails";
+import Categories from "./components/Categories";
+import CategoryPage from "./components/CategoryPage";
 
 const appStyles = {
   app: {
@@ -34,6 +36,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/category/:categoryId" element={<CategoryPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />

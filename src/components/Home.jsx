@@ -95,29 +95,35 @@ const Home = () => {
       id: 1,
       title: "Smartphone X",
       price: 699.99,
-      description: "Latest smartphone with advanced features",
-      image: "https://via.placeholder.com/300",
+      description:
+        "Latest smartphone with advanced features and stunning display",
+      image:
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     },
     {
       id: 2,
       title: "Laptop Pro",
       price: 1299.99,
-      description: "High-performance laptop for professionals",
-      image: "https://via.placeholder.com/300",
+      description: "High-performance laptop for professionals and creatives",
+      image:
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     },
     {
       id: 3,
       title: "Wireless Headphones",
       price: 199.99,
       description: "Premium wireless headphones with noise cancellation",
-      image: "https://via.placeholder.com/300",
+      image:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     },
     {
       id: 4,
       title: "Smart Watch",
       price: 249.99,
-      description: "Feature-rich smartwatch with health tracking",
-      image: "https://via.placeholder.com/300",
+      description:
+        "Feature-rich smartwatch with health tracking and notifications",
+      image:
+        "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     },
   ];
 
