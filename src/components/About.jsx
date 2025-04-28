@@ -4,192 +4,176 @@ const aboutStyles = {
   aboutContainer: {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "2rem",
-  },
-  heroSection: {
-    textAlign: "center",
     padding: "4rem 2rem",
     backgroundColor: "#f9f9f9",
-    borderRadius: "8px",
-    marginBottom: "4rem",
   },
-  heroTitle: {
-    fontSize: "3rem",
-    color: "#333",
+  header: {
+    textAlign: "center",
+    marginBottom: "3rem",
+  },
+  title: {
+    fontSize: "2.5rem",
+    color: "#2ecc71",
     marginBottom: "1rem",
+    fontWeight: "bold",
   },
-  heroSubtitle: {
+  subtitle: {
     fontSize: "1.2rem",
-    color: "#666",
+    color: "#333",
     maxWidth: "800px",
     margin: "0 auto",
-  },
-  section: {
-    marginBottom: "4rem",
-  },
-  sectionTitle: {
-    fontSize: "2rem",
-    color: "#333",
-    marginBottom: "2rem",
-  },
-  sectionContent: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "2rem",
-    alignItems: "center",
-  },
-  sectionText: {
-    fontSize: "1.1rem",
     lineHeight: "1.6",
-    color: "#666",
   },
-  sectionImage: {
-    width: "100%",
-    borderRadius: "8px",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  journeySection: {
+    marginTop: "4rem",
+    backgroundColor: "white",
+    padding: "4rem 2rem",
+    borderRadius: "12px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
-  teamGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-    gap: "2rem",
-  },
-  teamMember: {
+  journeyTitle: {
+    fontSize: "2rem",
+    color: "#2ecc71",
+    marginBottom: "2rem",
     textAlign: "center",
+    fontWeight: "bold",
   },
-  memberImage: {
-    width: "200px",
-    height: "200px",
-    borderRadius: "50%",
-    marginBottom: "1rem",
-    objectFit: "cover",
-  },
-  memberName: {
-    fontSize: "1.3rem",
-    color: "#333",
-    marginBottom: "0.5rem",
-  },
-  memberRole: {
-    fontSize: "1rem",
-    color: "#666",
-  },
-  valuesList: {
+  journeyContent: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "2rem",
   },
-  valueCard: {
+  journeyCard: {
+    backgroundColor: "white",
     padding: "2rem",
-    backgroundColor: "#f9f9f9",
     borderRadius: "8px",
-    textAlign: "center",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    borderTop: "4px solid #2ecc71",
+    transition: "transform 0.3s ease",
   },
-  valueTitle: {
+  journeyCardHover: {
+    transform: "translateY(-5px)",
+  },
+  journeyCardTitle: {
     fontSize: "1.5rem",
-    color: "#333",
+    color: "#2ecc71",
     marginBottom: "1rem",
+    fontWeight: "bold",
   },
-  valueDescription: {
-    fontSize: "1rem",
+  journeyCardText: {
     color: "#666",
     lineHeight: "1.6",
+  },
+  achievementsSection: {
+    marginTop: "4rem",
+    backgroundColor: "white",
+    padding: "4rem 2rem",
+    borderRadius: "12px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  },
+  achievementsTitle: {
+    fontSize: "2rem",
+    color: "#2ecc71",
+    marginBottom: "2rem",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  achievementsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "2rem",
+  },
+  achievementCard: {
+    backgroundColor: "white",
+    padding: "2rem",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    textAlign: "center",
+    borderTop: "4px solid #2ecc71",
+    transition: "transform 0.3s ease",
+  },
+  achievementCardHover: {
+    transform: "translateY(-5px)",
+  },
+  achievementNumber: {
+    fontSize: "2.5rem",
+    color: "#2ecc71",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+  },
+  achievementText: {
+    fontSize: "1.1rem",
+    color: "#333",
+    fontWeight: "500",
   },
 };
 
 const About = () => {
   return (
     <div style={aboutStyles.aboutContainer}>
-      <section style={aboutStyles.heroSection}>
-        <h1 style={aboutStyles.heroTitle}>About E-Shop</h1>
-        <p style={aboutStyles.heroSubtitle}>
-          We are dedicated to providing high-quality products and exceptional
-          customer service to our valued customers.
+      <div style={aboutStyles.header}>
+        <h1 style={aboutStyles.title}>About E-Shop</h1>
+        <p style={aboutStyles.subtitle}>
+          Founded in 2017, E-Shop has grown to become one of India's leading
+          e-commerce platforms. We are committed to providing quality products
+          and exceptional service to customers across the country.
         </p>
-      </section>
+      </div>
 
-      <section style={aboutStyles.section}>
-        <h2 style={aboutStyles.sectionTitle}>Our Story</h2>
-        <div style={aboutStyles.sectionContent}>
-          <div style={aboutStyles.sectionText}>
-            <p>
-              Founded in 2020, E-Shop started as a small online store with a big
-              vision. Our mission was to create a seamless shopping experience
-              for customers while offering the best products at competitive
-              prices.
-            </p>
-            <p>
-              Over the years, we've grown into a trusted e-commerce platform,
-              serving thousands of satisfied customers worldwide. Our commitment
-              to quality and customer satisfaction remains at the heart of
-              everything we do.
+      <div style={aboutStyles.journeySection}>
+        <h2 style={aboutStyles.journeyTitle}>Our Journey</h2>
+        <div style={aboutStyles.journeyContent}>
+          <div style={aboutStyles.journeyCard}>
+            <h3 style={aboutStyles.journeyCardTitle}>Humble Beginnings</h3>
+            <p style={aboutStyles.journeyCardText}>
+              Starting from a small office in Pune, E-Shop began its journey
+              with a vision to revolutionize online shopping in India. Our first
+              warehouse was just 1000 square feet, but our dreams were as vast
+              as the Indian market itself.
             </p>
           </div>
-          <img
-            src="https://via.placeholder.com/600x400"
-            alt="Our Story"
-            style={aboutStyles.sectionImage}
-          />
-        </div>
-      </section>
-
-      <section style={aboutStyles.section}>
-        <h2 style={aboutStyles.sectionTitle}>Our Team</h2>
-        <div style={aboutStyles.teamGrid}>
-          <div style={aboutStyles.teamMember}>
-            <img
-              src="https://via.placeholder.com/200"
-              alt="Team Member 1"
-              style={aboutStyles.memberImage}
-            />
-            <h3 style={aboutStyles.memberName}>John Doe</h3>
-            <p style={aboutStyles.memberRole}>CEO & Founder</p>
-          </div>
-          <div style={aboutStyles.teamMember}>
-            <img
-              src="https://via.placeholder.com/200"
-              alt="Team Member 2"
-              style={aboutStyles.memberImage}
-            />
-            <h3 style={aboutStyles.memberName}>Jane Smith</h3>
-            <p style={aboutStyles.memberRole}>Head of Operations</p>
-          </div>
-          <div style={aboutStyles.teamMember}>
-            <img
-              src="https://via.placeholder.com/200"
-              alt="Team Member 3"
-              style={aboutStyles.memberImage}
-            />
-            <h3 style={aboutStyles.memberName}>Mike Johnson</h3>
-            <p style={aboutStyles.memberRole}>Customer Experience Manager</p>
-          </div>
-        </div>
-      </section>
-
-      <section style={aboutStyles.section}>
-        <h2 style={aboutStyles.sectionTitle}>Our Values</h2>
-        <div style={aboutStyles.valuesList}>
-          <div style={aboutStyles.valueCard}>
-            <h3 style={aboutStyles.valueTitle}>Quality</h3>
-            <p style={aboutStyles.valueDescription}>
-              We are committed to offering only the highest quality products,
-              carefully selected and tested to meet our standards.
+          <div style={aboutStyles.journeyCard}>
+            <h3 style={aboutStyles.journeyCardTitle}>Digital Revolution</h3>
+            <p style={aboutStyles.journeyCardText}>
+              As India embraced digital transformation, we expanded our
+              operations across major cities. Today, we serve customers in over
+              20,000 pin codes across India, making quality products accessible
+              to every corner of the country.
             </p>
           </div>
-          <div style={aboutStyles.valueCard}>
-            <h3 style={aboutStyles.valueTitle}>Customer Focus</h3>
-            <p style={aboutStyles.valueDescription}>
-              Our customers are at the center of everything we do. We strive to
-              provide exceptional service and support at every step.
-            </p>
-          </div>
-          <div style={aboutStyles.valueCard}>
-            <h3 style={aboutStyles.valueTitle}>Innovation</h3>
-            <p style={aboutStyles.valueDescription}>
-              We continuously improve our platform and services to provide the
-              best possible shopping experience for our customers.
+          <div style={aboutStyles.journeyCard}>
+            <h3 style={aboutStyles.journeyCardTitle}>Future Vision</h3>
+            <p style={aboutStyles.journeyCardText}>
+              Looking ahead, we aim to empower small businesses and local
+              artisans by providing them a platform to reach customers
+              nationwide. Our focus remains on innovation, customer
+              satisfaction, and contributing to India's growing digital economy.
             </p>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div style={aboutStyles.achievementsSection}>
+        <h2 style={aboutStyles.achievementsTitle}>Our Achievements</h2>
+        <div style={aboutStyles.achievementsGrid}>
+          <div style={aboutStyles.achievementCard}>
+            <div style={aboutStyles.achievementNumber}>100k+</div>
+            <div style={aboutStyles.achievementText}>Happy Customers</div>
+          </div>
+          <div style={aboutStyles.achievementCard}>
+            <div style={aboutStyles.achievementNumber}>50K+</div>
+            <div style={aboutStyles.achievementText}>Products Available</div>
+          </div>
+          <div style={aboutStyles.achievementCard}>
+            <div style={aboutStyles.achievementNumber}>100+</div>
+            <div style={aboutStyles.achievementText}>Cities Served</div>
+          </div>
+          <div style={aboutStyles.achievementCard}>
+            <div style={aboutStyles.achievementNumber}>24/7</div>
+            <div style={aboutStyles.achievementText}>Customer Support</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

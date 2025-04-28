@@ -11,6 +11,7 @@ import LoginPage from "./components/LoginPage";
 import ProductDetails from "./components/ProductDetails";
 import Categories from "./components/Categories";
 import CategoryPage from "./components/CategoryPage";
+import { CartProvider } from "./context/CartContext";
 
 const appStyles = {
   app: {
@@ -29,25 +30,27 @@ const appStyles = {
 
 function App() {
   return (
-    <Router>
-      <div style={appStyles.app}>
-        <Header />
-        <main style={appStyles.mainContent}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/category/:categoryId" element={<CategoryPage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <CartProvider>
+      <Router>
+        <div style={appStyles.app}>
+          <Header />
+          <main style={appStyles.mainContent}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/category/:categoryId" element={<CategoryPage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 

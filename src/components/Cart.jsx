@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const cartStyles = {
   cartContainer: {
@@ -137,41 +138,7 @@ const cartStyles = {
 };
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      price: 99.99,
-      quantity: 1,
-      image: "https://via.placeholder.com/100",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 149.99,
-      quantity: 2,
-      image: "https://via.placeholder.com/100",
-    },
-  ]);
-
-  const updateQuantity = (id, newQuantity) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  };
+  const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
   if (cartItems.length === 0) {
     return (
@@ -194,12 +161,15 @@ const Cart = () => {
           <div key={item.id} style={cartStyles.cartItem}>
             <img
               src={item.image}
-              alt={item.name}
+              alt={item.title}
               style={cartStyles.itemImage}
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/100?text=No+Image";
+              }}
             />
             <div style={cartStyles.itemDetails}>
-              <h3 style={cartStyles.itemName}>{item.name}</h3>
-              <p style={cartStyles.itemPrice}>${item.price.toFixed(2)}</p>
+              <h3 style={cartStyles.itemName}>{item.title}</h3>
+              <p style={cartStyles.itemPrice}>₹{item.price.toFixed(2)}</p>
               <div style={cartStyles.quantityControls}>
                 <button
                   style={cartStyles.quantityButton}
@@ -219,7 +189,7 @@ const Cart = () => {
             </div>
             <button
               style={cartStyles.removeButton}
-              onClick={() => removeItem(item.id)}
+              onClick={() => removeFromCart(item.id)}
             >
               Remove
             </button>
@@ -229,7 +199,7 @@ const Cart = () => {
       <div style={cartStyles.cartSummary}>
         <div style={cartStyles.summaryItem}>
           <span>Subtotal:</span>
-          <span>${calculateTotal().toFixed(2)}</span>
+          <span>₹{getCartTotal().toFixed(2)}</span>
         </div>
         <div style={cartStyles.summaryItem}>
           <span>Shipping:</span>
@@ -237,7 +207,7 @@ const Cart = () => {
         </div>
         <div style={{ ...cartStyles.summaryItem, ...cartStyles.total }}>
           <span>Total:</span>
-          <span>${calculateTotal().toFixed(2)}</span>
+          <span>₹{getCartTotal().toFixed(2)}</span>
         </div>
         <button style={cartStyles.checkoutButton}>Proceed to Checkout</button>
       </div>

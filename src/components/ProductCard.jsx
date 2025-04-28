@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const productCardStyles = {
   card: {
@@ -18,6 +19,7 @@ const productCardStyles = {
   },
   imageContainer: {
     position: "relative",
+    width: "100%",
     paddingTop: "75%", // 4:3 aspect ratio
     overflow: "hidden",
   },
@@ -76,11 +78,26 @@ const productCardStyles = {
     transform: "translateY(-2px)",
     boxShadow: "0 4px 8px rgba(46, 204, 113, 0.3)",
   },
+  inCartButton: {
+    backgroundColor: "#27ae60",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
+  },
 };
 
 const ProductCard = ({ product }) => {
   const { id, title, price, description, image } = product;
   const [isHovered, setIsHovered] = React.useState(false);
+  const { addToCart, cartItems } = useCart();
+  const isInCart = cartItems.some((item) => item.id === id);
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+  };
 
   return (
     <div
@@ -91,7 +108,7 @@ const ProductCard = ({ product }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
         <div style={productCardStyles.imageContainer}>
           <img
             src={image}
@@ -99,6 +116,10 @@ const ProductCard = ({ product }) => {
             style={{
               ...productCardStyles.image,
               ...(isHovered && productCardStyles.imageHover),
+            }}
+            onError={(e) => {
+              e.target.src =
+                "https://via.placeholder.com/300x400?text=No+Image";
             }}
           />
         </div>
@@ -111,9 +132,11 @@ const ProductCard = ({ product }) => {
           style={{
             ...productCardStyles.button,
             ...(isHovered && productCardStyles.buttonHover),
+            ...(isInCart && productCardStyles.inCartButton),
           }}
+          onClick={handleAddToCart}
         >
-          Add to Cart
+          {isInCart ? "Added to Cart" : "Add to Cart"}
         </button>
       </div>
     </div>

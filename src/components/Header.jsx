@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 
 const headerStyles = {
   header: {
@@ -61,6 +62,7 @@ const headerStyles = {
     fontSize: "1.5rem",
     color: "#333",
     cursor: "pointer",
+    textDecoration: "none",
   },
   cartCount: {
     position: "absolute",
@@ -80,7 +82,8 @@ const headerStyles = {
 };
 
 const Header = () => {
-  const cartCount = 0; // This would come from your cart state
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
 
   return (
     <header style={headerStyles.header}>
