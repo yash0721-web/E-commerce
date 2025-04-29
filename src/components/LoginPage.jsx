@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+// API base URL for development
+const API_BASE = "http://localhost:5000/api";
+
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -28,8 +31,31 @@ const LoginPage = () => {
         setError(result.error);
       }
     } else {
-      // Handle signup logic here
-      setError("Signup functionality coming soon");
+      // Handle signup
+      try {
+        const response = await fetch(`${API_BASE}/auth/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to sign up");
+        }
+
+        // Save token and user data
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Redirect to home page
+        navigate("/");
+      } catch (error) {
+        setError(error.message);
+      }
     }
   };
 

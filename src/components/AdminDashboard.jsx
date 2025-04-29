@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import AdminProductPanel from "./AdminProductPanel";
 
 const AdminDashboard = () => {
   const { logout } = useAuth();
@@ -314,7 +315,7 @@ const AdminDashboard = () => {
       </div>
 
       <div style={styles.content}>
-        {activeTab === "products" && renderProducts()}
+        {activeTab === "products" && <AdminProductPanel />}
         {activeTab === "orders" && renderOrders()}
         {activeTab === "users" && renderUsers()}
       </div>
