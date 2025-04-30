@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+const API_BASE = "http://localhost:5000/api";
+
 export default function AdminProductPanel() {
   // Load products from localStorage on initial render
   const [products, setProducts] = useState(() => {
@@ -18,6 +20,7 @@ export default function AdminProductPanel() {
     price: "",
     stock: "",
     category: "",
+    link: "",
   });
   const [editingId, setEditingId] = useState(null);
   const [message, setMessage] = useState("");
@@ -36,18 +39,39 @@ export default function AdminProductPanel() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  async function addProductToBackend(product) {
+    try {
+      const response = await fetch(`${API_BASE}/products`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      });
+      if (!response.ok) throw new Error("Failed to add product to backend");
+      return await response.json();
+    } catch (error) {
+      console.error("Backend add product error:", error);
+      return null;
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     setMessage("");
 
     // Validate form
-    if (!form.name || !form.price || !form.stock || !form.category) {
+    if (
+      !form.name ||
+      !form.price ||
+      !form.stock ||
+      !form.category ||
+      !form.link
+    ) {
       setMessage("Please fill in all fields");
       return;
     }
 
     if (editingId) {
-      // Update existing product
+      // Update existing product (local only)
       setProducts((prevProducts) =>
         prevProducts.map((p) =>
           p.id === editingId
@@ -57,26 +81,36 @@ export default function AdminProductPanel() {
                 price: Number(form.price),
                 stock: Number(form.stock),
                 category: form.category,
+                link: form.link,
               }
             : p
         )
       );
       setMessage("Product updated successfully!");
     } else {
-      // Add new product
+      // Add new product (local and backend)
       const newProduct = {
-        id: Date.now(), // Using timestamp as temporary ID
         name: form.name,
         price: Number(form.price),
         stock: Number(form.stock),
         category: form.category,
+        link: form.link,
       };
-      setProducts((prev) => [...prev, newProduct]);
-      setMessage("Product added successfully!");
+      addProductToBackend(newProduct).then((savedProduct) => {
+        if (savedProduct && savedProduct._id) {
+          setProducts((prev) => [
+            ...prev,
+            { ...newProduct, id: savedProduct._id },
+          ]);
+        } else {
+          setProducts((prev) => [...prev, { ...newProduct, id: Date.now() }]);
+          setMessage("Product added locally, but failed to save to database.");
+        }
+      });
     }
 
     // Reset form
-    setForm({ name: "", price: "", stock: "", category: "" });
+    setForm({ name: "", price: "", stock: "", category: "", link: "" });
     setEditingId(null);
   }
 
@@ -86,6 +120,7 @@ export default function AdminProductPanel() {
       price: product.price,
       stock: product.stock,
       category: product.category,
+      link: product.link || "",
     });
     setEditingId(product.id);
     setMessage("");
@@ -99,7 +134,7 @@ export default function AdminProductPanel() {
   }
 
   function handleCancel() {
-    setForm({ name: "", price: "", stock: "", category: "" });
+    setForm({ name: "", price: "", stock: "", category: "", link: "" });
     setEditingId(null);
     setMessage("");
   }
@@ -250,6 +285,14 @@ export default function AdminProductPanel() {
           style={panelStyles.input}
           required
         />
+        <input
+          name="link"
+          placeholder="Product Link"
+          value={form.link}
+          onChange={handleChange}
+          style={panelStyles.input}
+          required
+        />
         <button type="submit" style={panelStyles.button}>
           {editingId ? "Update" : "Add"} Product
         </button>
@@ -273,13 +316,14 @@ export default function AdminProductPanel() {
               <th style={panelStyles.th}>Price</th>
               <th style={panelStyles.th}>Stock</th>
               <th style={panelStyles.th}>Category</th>
+              <th style={panelStyles.th}>Link</th>
               <th style={panelStyles.th}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {products.length === 0 ? (
               <tr>
-                <td colSpan="5" style={panelStyles.empty}>
+                <td colSpan="6" style={panelStyles.empty}>
                   No products found.
                 </td>
               </tr>
@@ -290,6 +334,19 @@ export default function AdminProductPanel() {
                   <td style={panelStyles.td}>{p.price}</td>
                   <td style={panelStyles.td}>{p.stock}</td>
                   <td style={panelStyles.td}>{p.category}</td>
+                  <td style={panelStyles.td}>
+                    {p.link ? (
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
                   <td style={panelStyles.td}>
                     <button
                       style={panelStyles.actionBtn}

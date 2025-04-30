@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 
 const productsStyles = {
@@ -48,99 +48,39 @@ const productsStyles = {
   },
 };
 
+const API_BASE = "http://localhost:5000/api";
+
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Sample products data
-  const products = [
-    {
-      id: 101,
-      title: "Smartphone X Pro",
-      price: 49999.99,
-      description:
-        "Latest smartphone with 5G support and advanced camera system",
-      image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "electronics",
-    },
-    {
-      id: 102,
-      title: "Wireless Earbuds",
-      price: 7999.99,
-      description: "Premium wireless earbuds with active noise cancellation",
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "electronics",
-    },
-    {
-      id: 201,
-      title: "Men's Casual Shirt",
-      price: 1999.99,
-      description: "Premium cotton casual shirt for men",
-      image:
-        "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "fashion",
-    },
-    {
-      id: 202,
-      title: "Women's Summer Dress",
-      price: 2999.99,
-      description: "Elegant summer dress for women",
-      image:
-        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "fashion",
-    },
-    {
-      id: 301,
-      title: "Modern Sofa Set",
-      price: 29999.99,
-      description: "Contemporary 3-seater sofa set",
-      image:
-        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "home",
-    },
-    {
-      id: 401,
-      title: "Premium Notebook Set",
-      price: 999.99,
-      description: "Set of 3 premium quality notebooks",
-      image:
-        "https://images.unsplash.com/photo-1524578271613-d550eacf6090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "books",
-    },
-    {
-      id: 501,
-      title: "Running Shoes",
-      price: 4999.99,
-      description: "Premium running shoes with advanced cushioning",
-      image:
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      category: "sports",
-    },
-    {
-      id: 601,
-      title: "Skincare Set",
-      price: 2999.99,
-      description: "Complete skincare routine set for glowing skin",
-      image:
-        "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/2c/b1/ae/01/80/v1_E10/E106C82Z.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=de8fc69217df0aa28c6d5a4899e4a4fb65fe6a5d94f97dee7ebdd02562cc9844",
-      category: "beauty",
-    },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/products`);
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const categories = [
     { id: "all", name: "All" },
-    { id: "electronics", name: "Electronics" },
-    { id: "fashion", name: "Fashion" },
-    { id: "home", name: "Home & Living" },
-    { id: "books", name: "Books & Stationery" },
-    { id: "sports", name: "Sports" },
-    { id: "beauty", name: "Beauty & Health" },
+    ...Array.from(new Set(products.map((p) => p.category))).map((cat) => ({
+      id: cat,
+      name: cat.charAt(0).toUpperCase() + cat.slice(1),
+    })),
   ];
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.title
+    const matchesSearch = product.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
@@ -175,11 +115,15 @@ const Products = () => {
           </button>
         ))}
       </div>
-      <div style={productsStyles.productsGrid}>
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {loading ? (
+        <p>Loading products...</p>
+      ) : (
+        <div style={productsStyles.productsGrid}>
+          {filteredProducts.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
-import api from "../services/api";
+import { placeOrder } from "../services/orderService";
 import "./Checkout.css";
 
 const Checkout = () => {
@@ -38,22 +38,13 @@ const Checkout = () => {
     try {
       const orderData = {
         user: user._id,
-        items: cart.items,
+        items: cart.items.map((item) => ({
+          product: item._id,
+          quantity: item.quantity,
+        })),
         total: cart.total,
-        shippingAddress: {
-          address: formData.address,
-          city: formData.city,
-          state: formData.state,
-          zipCode: formData.zipCode,
-        },
-        paymentInfo: {
-          cardNumber: formData.cardNumber,
-          cardName: formData.cardName,
-          expiryDate: formData.expiryDate,
-        },
       };
-
-      await api.post("/orders", orderData);
+      await placeOrder(orderData);
       clearCart();
       navigate("/order-success");
     } catch (error) {

@@ -21,18 +21,18 @@ const LoginPage = () => {
     if (isLogin) {
       try {
         console.log("Attempting login with:", { email });
-        const result = await login(email, password);
+      const result = await login(email, password);
         console.log("Login result:", result);
 
-        if (result.success) {
+      if (result.success) {
           console.log("Login successful, user role:", result.user.role);
-          // Redirect based on role
-          if (result.user.role === "admin") {
-            navigate("/admin/dashboard");
-          } else {
-            navigate("/");
-          }
+        // Redirect based on role
+        if (result.user.role === "admin") {
+          navigate("/admin/dashboard");
         } else {
+          navigate("/");
+        }
+      } else {
           console.error("Login failed:", result.error);
           setError(result.error || "Invalid email or password");
         }
