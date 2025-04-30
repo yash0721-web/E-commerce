@@ -68,59 +68,59 @@ const categoriesStyles = {
   },
 };
 
+const categories = [
+  {
+    id: 1,
+    name: "Electronics",
+    image:
+      "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 120,
+    description: "Latest gadgets and tech accessories",
+  },
+  {
+    id: 2,
+    name: "Fashion",
+    image:
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 85,
+    description: "Trendy clothing and accessories",
+  },
+  {
+    id: 3,
+    name: "Home & Living",
+    image:
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 65,
+    description: "Furniture and home decor",
+  },
+  {
+    id: 4,
+    name: "Books & Stationery",
+    image:
+      "https://images.unsplash.com/photo-1524578271613-d550eacf6090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 45,
+    description: "Books, notebooks, and writing supplies",
+  },
+  {
+    id: 5,
+    name: "Sports",
+    image:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 60,
+    description: "Sports equipment and fitness gear",
+  },
+  {
+    id: 6,
+    name: "Beauty & Health",
+    image:
+      "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    count: 75,
+    description: "Skincare, makeup, and wellness products",
+  },
+];
+
 const Categories = () => {
   const [hoveredCard, setHoveredCard] = React.useState(null);
-
-  const categories = [
-    {
-      id: 1,
-      name: "Electronics",
-      image:
-        "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 120,
-      description: "Latest gadgets and tech accessories",
-    },
-    {
-      id: 2,
-      name: "Fashion",
-      image:
-        "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 85,
-      description: "Trendy clothing and accessories",
-    },
-    {
-      id: 3,
-      name: "Home & Living",
-      image:
-        "https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 65,
-      description: "Furniture and home decor",
-    },
-    {
-      id: 4,
-      name: "Books & Stationery",
-      image:
-        "https://images.unsplash.com/photo-1524578271613-d550eacf6090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 45,
-      description: "Books, notebooks, and writing supplies",
-    },
-    {
-      id: 5,
-      name: "Sports",
-      image:
-        "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 60,
-      description: "Sports equipment and fitness gear",
-    },
-    {
-      id: 6,
-      name: "Beauty & Health",
-      image:
-        "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      count: 75,
-      description: "Skincare, makeup, and wellness products",
-    },
-  ];
 
   return (
     <section style={categoriesStyles.categoriesSection}>
@@ -163,4 +163,5 @@ const Categories = () => {
   );
 };
 
+export { categories };
 export default Categories;

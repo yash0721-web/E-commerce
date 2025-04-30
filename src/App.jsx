@@ -13,7 +13,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import LoginPage from "./components/LoginPage";
-import ProductDetails from "./components/ProductDetails";
+import ProductPage from "./components/ProductPage";
 import Categories from "./components/Categories";
 import CategoryPage from "./components/CategoryPage";
 import Checkout from "./components/Checkout";
@@ -72,7 +72,7 @@ const App = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/product/:id" element={<ProductPage />} />
                 <Route
                   path="/admin/dashboard"
                   element={

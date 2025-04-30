@@ -42,7 +42,7 @@ const categoryProducts = {
       price: 49999.99,
       description:
         "Latest smartphone with 5G support and advanced camera system",
-      image:
+        image:
         "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     },
     {
@@ -186,7 +186,7 @@ const categoryProducts = {
       price: 2999.99,
       description: "Complete skincare routine set for glowing skin",
       image:
-      "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/2c/b1/ae/01/80/v1_E10/E106C82Z.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=de8fc69217df0aa28c6d5a4899e4a4fb65fe6a5d94f97dee7ebdd02562cc9844",
+        "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/2c/b1/ae/01/80/v1_E10/E106C82Z.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=de8fc69217df0aa28c6d5a4899e4a4fb65fe6a5d94f97dee7ebdd02562cc9844",
     },
     {
       id: 602,
@@ -202,7 +202,7 @@ const categoryProducts = {
       price: 2499.99,
       description: "Premium hair care products for all hair types",
       image:
-       "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/22/26/87/61/13/v1_E10/E106BV4Y.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=9a8dcdeb3ccda1c082248d495fd763165218e07df8676baa7272861ffe3cff40",
+        "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/22/26/87/61/13/v1_E10/E106BV4Y.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=9a8dcdeb3ccda1c082248d495fd763165218e07df8676baa7272861ffe3cff40",
     },
     {
       id: 604,
@@ -220,28 +220,40 @@ const categoryDetails = {
     name: "Electronics",
     description:
       "Discover the latest in technology with our premium electronics collection.",
+    image:
+      "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
   2: {
     name: "Fashion",
     description: "Explore our trendy fashion collection for men and women.",
+    image:
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
   3: {
     name: "Home & Living",
     description:
       "Transform your living space with our stylish home decor and furniture.",
+    image:
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
   4: {
     name: "Books & Stationery",
     description: "Find your next read and premium stationery items.",
+    image:
+      "https://images.unsplash.com/photo-1524578271613-d550eacf6090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
   5: {
     name: "Sports",
     description: "Get active with our premium sports and fitness equipment.",
+    image:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
   6: {
     name: "Beauty & Health",
     description:
       "Discover premium beauty and health products for your self-care routine.",
+    image:
+      "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
   },
 };
 
@@ -268,4 +280,5 @@ const CategoryPage = () => {
   );
 };
 
+export { categoryProducts, categoryDetails };
 export default CategoryPage;

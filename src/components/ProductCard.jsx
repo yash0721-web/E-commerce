@@ -22,6 +22,10 @@ const productCardStyles = {
     width: "100%",
     paddingTop: "75%", // 4:3 aspect ratio
     overflow: "hidden",
+    background: "#f4f4f4",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     position: "absolute",
@@ -31,6 +35,7 @@ const productCardStyles = {
     height: "100%",
     objectFit: "cover",
     transition: "transform 0.3s ease",
+    background: "#f4f4f4",
   },
   imageHover: {
     transform: "scale(1.05)",
@@ -46,6 +51,9 @@ const productCardStyles = {
     marginBottom: "0.5rem",
     color: "#2c3e50",
     fontWeight: "600",
+    minHeight: "2.5em",
+    display: "flex",
+    alignItems: "center",
   },
   price: {
     fontSize: "1.4rem",
@@ -59,6 +67,9 @@ const productCardStyles = {
     marginBottom: "1.5rem",
     lineHeight: "1.5",
     flex: 1,
+    minHeight: "3em",
+    display: "flex",
+    alignItems: "center",
   },
   button: {
     display: "block",
@@ -87,6 +98,8 @@ const productCardStyles = {
   },
 };
 
+const PLACEHOLDER_IMAGE = "https://via.placeholder.com/300x225?text=No+Image";
+
 const ProductCard = ({ product }) => {
   const { id, title, price, description, image } = product;
   const [isHovered, setIsHovered] = React.useState(false);
@@ -111,23 +124,26 @@ const ProductCard = ({ product }) => {
       <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
         <div style={productCardStyles.imageContainer}>
           <img
-            src={image}
-            alt={title}
+            src={image || PLACEHOLDER_IMAGE}
+            alt={title || "No Title"}
             style={{
               ...productCardStyles.image,
               ...(isHovered && productCardStyles.imageHover),
             }}
             onError={(e) => {
-              e.target.src =
-                "https://via.placeholder.com/300x400?text=No+Image";
+              e.target.src = PLACEHOLDER_IMAGE;
             }}
           />
         </div>
       </Link>
       <div style={productCardStyles.info}>
-        <h3 style={productCardStyles.title}>{title}</h3>
-        <p style={productCardStyles.price}>₹{price.toFixed(2)}</p>
-        <p style={productCardStyles.description}>{description}</p>
+        <h3 style={productCardStyles.title}>{title || "No Title"}</h3>
+        <p style={productCardStyles.price}>
+          ₹{price ? price.toFixed(2) : "0.00"}
+        </p>
+        <p style={productCardStyles.description}>
+          {description || "No description available."}
+        </p>
         <button
           style={{
             ...productCardStyles.button,
