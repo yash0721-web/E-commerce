@@ -19,20 +19,31 @@ const LoginPage = () => {
     setError("");
 
     if (isLogin) {
-      const result = await login(email, password);
-      if (result.success) {
-        // Redirect based on role
-        if (result.user.role === "admin") {
-          navigate("/admin/dashboard");
+      try {
+        console.log("Attempting login with:", { email });
+        const result = await login(email, password);
+        console.log("Login result:", result);
+
+        if (result.success) {
+          console.log("Login successful, user role:", result.user.role);
+          // Redirect based on role
+          if (result.user.role === "admin") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/");
+          }
         } else {
-          navigate("/");
+          console.error("Login failed:", result.error);
+          setError(result.error || "Invalid email or password");
         }
-      } else {
-        setError(result.error);
+      } catch (error) {
+        console.error("Login error:", error);
+        setError("Invalid email or password. Please try again.");
       }
     } else {
       // Handle signup
       try {
+        console.log("Attempting signup with:", { email, name });
         const response = await fetch(`${API_BASE}/auth/signup`, {
           method: "POST",
           headers: {
@@ -42,6 +53,7 @@ const LoginPage = () => {
         });
 
         const data = await response.json();
+        console.log("Signup response:", data);
 
         if (!response.ok) {
           throw new Error(data.error || "Failed to sign up");
@@ -54,7 +66,8 @@ const LoginPage = () => {
         // Redirect to home page
         navigate("/");
       } catch (error) {
-        setError(error.message);
+        console.error("Signup error:", error);
+        setError(error.message || "Failed to sign up. Please try again.");
       }
     }
   };

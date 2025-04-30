@@ -209,7 +209,9 @@ const Cart = () => {
           <span>Total:</span>
           <span>₹{getCartTotal().toFixed(2)}</span>
         </div>
-        <button style={cartStyles.checkoutButton}>Proceed to Checkout</button>
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
+          <button style={cartStyles.checkoutButton}>Proceed to Checkout</button>
+        </Link>
       </div>
     </div>
   );
