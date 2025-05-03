@@ -145,14 +145,6 @@ const Contact = () => {
             <div style={contactStyles.infoLabel}>Email</div>
             <div style={contactStyles.infoText}>contact@eshop.com</div>
           </div>
-          <div style={contactStyles.infoItem}>
-            <div style={contactStyles.infoLabel}>Business Hours</div>
-            <div style={contactStyles.infoText}>
-              Monday - Friday: 9:00 AM - 6:00 PM
-              <br />
-              Saturday - Sunday: Closed
-            </div>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} style={contactStyles.form}>
