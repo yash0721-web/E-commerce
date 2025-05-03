@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const footerStyles = {
   footer: {
     backgroundColor: "#333",
-    color: "white",
+    color: "#fff",
     padding: "3rem 2rem",
     marginTop: "auto",
   },
@@ -24,11 +24,14 @@ const footerStyles = {
     fontSize: "1.2rem",
     fontWeight: "bold",
     marginBottom: "1rem",
+    color: "#fff",
   },
   footerLink: {
     color: "#ccc",
     textDecoration: "none",
     transition: "color 0.3s ease",
+    display: "inline-block",
+    padding: "0.5rem 0",
   },
   footerLinkHover: {
     color: "#2ecc71",
@@ -85,57 +88,40 @@ const Footer = () => {
             FAQ
           </Link>
         </div>
-        <div style={footerStyles.footerSection}>
-          <h3 style={footerStyles.footerHeading}>My Account</h3>
-          <Link to="/account" style={footerStyles.footerLink}>
-            My Account
-          </Link>
-          <Link to="/orders" style={footerStyles.footerLink}>
-            Order Status
-          </Link>
-          <Link to="/wishlist" style={footerStyles.footerLink}>
-            Wishlist
-          </Link>
-        </div>
+
         <div style={footerStyles.footerSection}>
           <h3 style={footerStyles.footerHeading}>Connect With Us</h3>
           <div style={footerStyles.socialLinks}>
-            <button
-              style={{
-                ...footerStyles.footerLink,
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-              }}
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={footerStyles.footerLink}
             >
               <i
                 className="fab fa-facebook"
                 style={footerStyles.socialIcon}
               ></i>
-            </button>
-            <button
-              style={{
-                ...footerStyles.footerLink,
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-              }}
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={footerStyles.footerLink}
             >
               <i className="fab fa-twitter" style={footerStyles.socialIcon}></i>
-            </button>
-            <button
-              style={{
-                ...footerStyles.footerLink,
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-              }}
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={footerStyles.footerLink}
             >
               <i
                 className="fab fa-instagram"
                 style={footerStyles.socialIcon}
               ></i>
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -18,6 +18,12 @@ import Categories from "./components/Categories";
 import CategoryPage from "./components/CategoryPage";
 import Checkout from "./components/Checkout";
 import AdminDashboard from "./components/AdminDashboard";
+import Careers from "./components/Careers";
+import Press from "./components/Press";
+import ShippingInfo from "./components/ShippingInfo";
+import Returns from "./components/Returns";
+import FAQ from "./components/FAQ";
+import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
@@ -59,6 +65,7 @@ const App = () => {
           <div style={appStyles.app}>
             <Header />
             <main style={appStyles.mainContent}>
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
@@ -73,6 +80,11 @@ const App = () => {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/press" element={<Press />} />
+                <Route path="/shipping" element={<ShippingInfo />} />
+                <Route path="/returns" element={<Returns />} />
+                <Route path="/faq" element={<FAQ />} />
                 <Route
                   path="/admin/dashboard"
                   element={

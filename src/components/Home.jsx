@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import Newsletter from "./Newsletter";
+import { Link } from "react-router-dom";
 
 const homeStyles = {
   featuredProducts: {
@@ -147,14 +148,18 @@ const Home = () => {
             <p style={homeStyles.offerBannerText}>
               Up to 50% off on selected items
             </p>
-            <button style={homeStyles.shopNowButton}>Shop Now</button>
+            <Link to="/products" style={homeStyles.shopNowButton}>
+              Shop Now
+            </Link>
           </div>
           <div style={homeStyles.offerBanner}>
             <h3 style={homeStyles.offerBannerTitle}>New Arrivals</h3>
             <p style={homeStyles.offerBannerText}>
               Discover our latest collection
             </p>
-            <button style={homeStyles.exploreButton}>Explore</button>
+            <Link to="/categories" style={homeStyles.exploreButton}>
+              Explore
+            </Link>
           </div>
         </div>
       </section>
