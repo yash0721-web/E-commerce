@@ -43,6 +43,11 @@ const pressStyles = {
     textDecoration: "none",
     fontWeight: "bold",
     transition: "color 0.3s ease",
+    background: "none",
+    border: "none",
+    padding: 0,
+    cursor: "pointer",
+    fontSize: "1rem",
   },
   readMoreHover: {
     color: "#27ae60",
@@ -104,6 +109,11 @@ const Press = () => {
     },
   ];
 
+  const handleReadMore = (releaseId) => {
+    // Handle read more action here
+    console.log(`Read more about release ${releaseId}`);
+  };
+
   return (
     <div style={pressStyles.container}>
       <h1 style={pressStyles.heading}>Press Releases</h1>
@@ -113,9 +123,9 @@ const Press = () => {
             <h2 style={pressStyles.pressTitle}>{release.title}</h2>
             <p style={pressStyles.pressDate}>{release.date}</p>
             <p style={pressStyles.pressDescription}>{release.description}</p>
-            <a
-              href="#"
+            <button
               style={pressStyles.readMore}
+              onClick={() => handleReadMore(release.id)}
               onMouseEnter={(e) => {
                 e.target.style.color = pressStyles.readMoreHover.color;
               }}
@@ -124,7 +134,7 @@ const Press = () => {
               }}
             >
               Read More →
-            </a>
+            </button>
           </div>
         ))}
       </div>
