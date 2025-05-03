@@ -200,6 +200,7 @@ const AdminDashboard = () => {
     },
   ];
 
+  // eslint-disable-next-line no-unused-vars
   const renderProducts = () => (
     <table style={styles.table}>
       <thead>

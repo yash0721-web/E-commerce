@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-// Import the categoryProducts and categoryDetails objects from CategoryPage
-import { categoryProducts, categoryDetails } from "./CategoryPage";
+// Import the categoryProducts object from CategoryPage
+import { categoryProducts } from "./CategoryPage";
 import { categories } from "./Categories";
 
 const ProductPage = () => {

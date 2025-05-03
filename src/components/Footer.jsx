@@ -100,21 +100,42 @@ const Footer = () => {
         <div style={footerStyles.footerSection}>
           <h3 style={footerStyles.footerHeading}>Connect With Us</h3>
           <div style={footerStyles.socialLinks}>
-            <a href="#" style={footerStyles.footerLink}>
+            <button
+              style={{
+                ...footerStyles.footerLink,
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+              }}
+            >
               <i
                 className="fab fa-facebook"
                 style={footerStyles.socialIcon}
               ></i>
-            </a>
-            <a href="#" style={footerStyles.footerLink}>
+            </button>
+            <button
+              style={{
+                ...footerStyles.footerLink,
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+              }}
+            >
               <i className="fab fa-twitter" style={footerStyles.socialIcon}></i>
-            </a>
-            <a href="#" style={footerStyles.footerLink}>
+            </button>
+            <button
+              style={{
+                ...footerStyles.footerLink,
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+              }}
+            >
               <i
                 className="fab fa-instagram"
                 style={footerStyles.socialIcon}
               ></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
